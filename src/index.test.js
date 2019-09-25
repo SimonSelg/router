@@ -487,6 +487,27 @@ describe("links", () => {
     });
   });
 
+  it("accepts `as` prop to render custom element", () => {
+    let ref;
+    let div = document.createElement("div");
+    let className = "btn btn-link";
+    let LinkComponent = React.forwardRef(({ children, ...props }, ref) => (
+      <a className={className} ref={ref} {...props}>
+        {children}
+      </a>
+    ));
+    ReactDOM.render(
+      <Link to="/" as={LinkComponent} ref={node => (ref = node)} />,
+      div
+    );
+    try {
+      expect(ref).toBeInstanceOf(HTMLAnchorElement);
+      expect(ref.className).toBe(className);
+    } finally {
+      ReactDOM.unmountComponentAtNode(div);
+    }
+  });
+
   it("calls history.pushState when clicked", () => {
     const testSource = createMemorySource("/");
     testSource.history.replaceState = jest.fn();

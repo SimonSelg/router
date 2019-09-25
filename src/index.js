@@ -397,17 +397,24 @@ if (typeof forwardRef === "undefined") {
 
 let Link = forwardRef(({ innerRef, ...props }, ref) => (
   <BaseContext.Consumer>
-    {({ basepath, baseuri }) => (
+    {({ baseuri }) => (
       <Location>
         {({ location, navigate }) => {
-          let { to, state, replace, getProps = k, ...anchorProps } = props;
+          let {
+            as: LinkComponent = "a",
+            to,
+            state,
+            replace,
+            getProps = k,
+            ...anchorProps
+          } = props;
           let href = resolve(to, baseuri);
           let encodedHref = encodeURI(href);
           let isCurrent = location.pathname === encodedHref;
           let isPartiallyCurrent = startsWith(location.pathname, encodedHref);
 
           return (
-            <a
+            <LinkComponent
               ref={ref || innerRef}
               aria-current={isCurrent ? "page" : undefined}
               {...anchorProps}
