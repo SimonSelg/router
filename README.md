@@ -13,6 +13,7 @@
   <a href="https://www.npmjs.com/package/@reach/router"><img src="https://img.shields.io/npm/dm/@reach/router.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/reach/router"><img src="https://img.shields.io/travis/reach/router/master.svg?style=flat-square"></a>
 </p>
+
 ## Changes in this fork
 https://github.com/reach/router/pull/226 has been applied and build artefacts are in git. This is so this repo can be used instead of the `@reach/router` package until the PR gets merged.
 
