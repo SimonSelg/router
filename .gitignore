@@ -1,7 +1,7 @@
-/es
+#/es
 /node_modules
 /umd
-/index.js
+#/index.js
 /lib
 /compat
 npm-debug.log*
