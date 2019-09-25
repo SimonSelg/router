@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 import invariant from "invariant";
 import createContext from "create-react-context";
 import { polyfill } from "react-lifecycles-compat";
-import { startsWith, pick, resolve, match, insertParams, validateRedirect } from "./lib/utils";
+import { startsWith, pick, resolve, match, insertParams, validateRedirect, shallowCompare } from "./lib/utils";
 import { globalHistory, navigate, createHistory, createMemorySource } from "./lib/history";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -487,7 +487,18 @@ var Link = forwardRef(function (_ref4, ref) {
               if (anchorProps.onClick) anchorProps.onClick(event);
               if (shouldNavigate(event)) {
                 event.preventDefault();
-                navigate(href, { state: state, replace: replace });
+                var shouldReplace = replace;
+                if (replace !== "boolean" && isCurrent) {
+                  var _location$state = _extends({}, location.state),
+                      key = _location$state.key,
+                      restState = _objectWithoutProperties(_location$state, ["key"]);
+
+                  shouldReplace = shallowCompare(_extends({}, state), restState);
+                }
+                navigate(href, {
+                  state: state,
+                  replace: shouldReplace
+                });
               }
             }
           }));

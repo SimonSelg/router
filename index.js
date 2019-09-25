@@ -508,7 +508,18 @@ var Link = forwardRef(function (_ref4, ref) {
               if (anchorProps.onClick) anchorProps.onClick(event);
               if (shouldNavigate(event)) {
                 event.preventDefault();
-                navigate(href, { state: state, replace: replace });
+                var shouldReplace = replace;
+                if (replace !== "boolean" && isCurrent) {
+                  var _location$state = _extends({}, location.state),
+                      key = _location$state.key,
+                      restState = _objectWithoutProperties(_location$state, ["key"]);
+
+                  shouldReplace = (0, _utils.shallowCompare)(_extends({}, state), restState);
+                }
+                navigate(href, {
+                  state: state,
+                  replace: shouldReplace
+                });
               }
             }
           }));

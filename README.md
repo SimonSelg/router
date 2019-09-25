@@ -15,7 +15,13 @@
 </p>
 
 ## Changes in this fork
-https://github.com/reach/router/pull/226 has been applied and build artefacts are in git. This is so this repo can be used instead of the `@reach/router` package until the PR gets merged.
+
+The following PRs have been applied:
+
+- https://github.com/reach/router/pull/226
+- https://github.com/reach/router/pull/302
+
+Build artefacts are in git. This is so this repo can be used instead of the `@reach/router` package until the PRs get merged.
 
 ## Documentation
 
